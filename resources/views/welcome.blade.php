@@ -85,7 +85,7 @@
             <div class="container">
                 <div class="content">
                     <div class="title m-b-md">
-                        Near's air-flight's
+                        Nearest air-flight's
                     </div>
                     <p>Get the nearest, sonner flight</p>
 
@@ -96,6 +96,7 @@
 							<div class="form-group col-md-6">
 								<label for="get-departure">Departure</label>
 								<input type="text" class="form-control input-lg get-country" name="departure" id="get-departure">
+                                <div id="departure"></div>
 							</div>
 							<div class="form-group col-md-6">
 								<label for="get-arrival">Arrival</label>
@@ -121,7 +122,6 @@
 			var name = $(this).attr("name")
 			if (query != '') {
 				var _token = $(' input[name="_token"]').val();
-				console.log($("#get-country").attr("name"));
 				$.ajax({
 					url: "{{ route('flight.autocompletion') }}",
 					method:"POST",
@@ -133,7 +133,9 @@
 				})
 			}
 		});
-		$(document).on('click', 'li', function(){
+		$(document).on('click', 'a', function(){
+            console.log("in");
+            console.log("#get-"+$(this).attr("class"));
 			$("#get-"+$(this).attr("class")).val($(this).text());
 			$('#'+$(this).attr("class")).fadeOut();
 		});
